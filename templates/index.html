@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div class="overview">
+      <div class="content">
+        <h1 style="font-size: 40px; margin-left: 64px; color: white">
+          VIETNAMESE VOICE RECOGNITION
+        </h1>
+        <h2 style="text-align: center; padding-top: 20px; color: white">
+          Thai Doan Gia Bao _ 20110443
+        </h2>
+
+        <!-- <h1 class="record-notice" style="color: white;">No thing</h1> -->
+        <div class="change">
+          <div class="input">
+            <form
+              class="path-record"
+              method="post"
+              action="/record_wav"
+              enctype="multipart/form-data"
+            >
+              <input
+                type="image"
+                class="mic"
+                name="record"
+                src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-25-512.png"
+                alt="Submit"
+              />
+            </form>
+            <form
+              class="path-file"
+              method="post"
+              action="/file"
+              enctype="multipart/form-data"
+            >
+              <input type="file" name="file" />
+              <input
+                class="button"
+                type="submit"
+                name="submitButton"
+                value="Submit"
+              />
+            </form>
+          </div>
+          <hr width="100%" />
+
+          <div style="margin: 30px 30px">
+            {% for message in get_flashed_messages() %}
+            <h2>{{ message }}</h2>
+            {% endfor %}
+            <h4>Result:</h4>
+            <div class="text">
+              <div class="edit"><span> {{ transcript }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="background">
+        <img
+          class="backgroundImage"
+          src="https://static.vecteezy.com/system/resources/previews/002/326/623/original/black-golden-royal-luxury-background-landing-page-free-vector.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const record_notice = document.querySelector(".record-notice");
+      const mic_button = document.querySelector(".mic");
+
+      $(".mic").click(clickOnBackbutton);
+      function clickOnBackbutton() {
+        // console.log(record_notice.innerHTML = "Say Something...");
+        $(".edit").text("Waitting...");
+      }
+    </script>
+  </body>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .backgroundImage {
+      background-size: contain;
+      height: 703px;
+      width: 1525px;
+      opacity: 0.8;
+    }
+
+    .overview {
+      position: relative;
+      display: flex;
+    }
+
+    .content {
+      margin-top: 140px;
+      margin-left: 352px;
+      position: absolute;
+      z-index: 1;
+    }
+    .input {
+      display: flex;
+      padding: 30px;
+    }
+    .change {
+      width: 816px;
+      height: 333px;
+      margin-top: 30px;
+      border-radius: 10px;
+      justify-content: center;
+      background-color: aliceblue;
+      box-shadow: 0 0 2px #ffa608;
+    }
+
+    .path-record {
+      display: flex;
+      /* justify-content: space-between; */
+    }
+
+    .text {
+      margin-top: 20px;
+      width: 750px;
+      height: 117px;
+      background-color: white;
+      box-shadow: 0 0 2px #ffa608;
+    }
+
+    .edit {
+      margin: 20px 10px 10px 10px;
+    }
+
+    span {
+      margin-left: 20px;
+    }
+
+    .button {
+      background-color: #ffa608;
+      margin-left: 335px;
+      width: 100px;
+      height: 34px;
+      border-radius: 20px;
+      font-weight: bold;
+      border: none;
+      color: white;
+    }
+
+    .mic {
+      height: 42px;
+      margin-right: 20px;
+      /* margin-left: 350px; */
+    }
+
+    button:hover {
+      background-color: #f2b751;
+    }
+  </style>
+</html>
